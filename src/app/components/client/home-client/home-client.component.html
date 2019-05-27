@@ -1,0 +1,66 @@
+﻿<div class="wrapper" style="background-color: #daecec;">
+  <button (click)="addSession()" class="btn btn-info">Add session</button>
+<div *ngIf="bool">
+  <div class="col-md-8">
+    <div class="card">
+      <h2 class="text-center">choisiser votre heure</h2>
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="col-md-8 pr-1">
+            <div class="form-group">
+              <label>date de reservation :</label>
+              <input type="datetime-local" formControlName="reservationDate" placeholder="date" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.reservationDate.errors }">
+              <div *ngIf="submitted && f.reservationDate.errors">
+                <div *ngIf="f.reservationDate.required">la date est obligatoire</div>
+              </div>
+            </div>
+          </div>
+        <button type="submit" class="btn btn-info">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+  <div class="main-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="places-buttons">
+              <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                  <h4 class="card-title">
+                    Planing de vos sessesion
+                    <p class="category"> vous pouver ajouter vos session de conduits</p>
+                  </h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-11 ml-auto mr-auto">
+                  <div class="row">
+                    <table class="table table-dark table-hover table-striped">
+                      <thead class="thead-light">
+                      <tr>
+                        <th>date De la reservation</th>
+                        <th>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let session of session">
+                        <td>{{session.reservationDate | date: 'EEEE dd MMMM yyyy   HH:MM' }}</td>
+                        <td>
+                            <button (click)="deleteSession(session)" class="btn btn-info">cancel</button>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

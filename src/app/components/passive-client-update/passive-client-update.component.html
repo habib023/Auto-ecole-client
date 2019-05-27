@@ -1,0 +1,163 @@
+<div _ngcontent-c5="" class="panel-header panel-header-sm">
+  <div _ngcontent-c8="" class="panel-header"><div _ngcontent-c8="" class="header text-center"><h2 _ngcontent-c8="" class="title">Modifier votre voiture</h2><p _ngcontent-c8="" class="category">Please checkout the <a _ngcontent-c8=""  target="_blank">Modifier votre voiture </a></p></div></div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-6">
+      <div class="card">
+
+          <h2 class="text-center">Client :  {{client?.name}} {{client?.surname}} </h2>
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+              <div class="col-md-5 pr-1">
+                  <div class="form-group">
+                      <label>username:</label>
+                      <input type="text" formControlName="username" placeholder="" class="form-control"
+                             [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                      <div *ngIf="submitted && f.username.errors">
+                          <div *ngIf="f.username.errors.required">username is required</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-5 pr-1">
+                  <div class="form-group">
+                      <label>cin :</label>
+                      <input type="text" formControlName="cin" placeholder="" class="form-control"
+                             [ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
+                      <div *ngIf="submitted && f.cin.errors">
+                          <div *ngIf="f.cin.errors.required">cin required</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-5 pr-1">
+                  <div class="form-group">
+
+                      <label>cin Date:</label>
+                      <input type="date" formControlName="cinDate" placeholder="" class="form-control"
+                             [ngClass]="{ 'is-invalid': submitted && f.cinDate.errors }">
+                      <div *ngIf="submitted && f.cinDate.errors">
+                          <div *ngIf="f.cinDate.errors.required">cin Date required</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-5 pr-1">
+                  <div class="form-group">
+
+                      <label>phone:</label>
+                      <input type="text" formControlName="phone" placeholder="" class="form-control"
+                             [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                      <div *ngIf="submitted && f.phone.errors">
+                          <div *ngIf="f.phone.errors.required">phone is required</div>
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="col-md-5 pr-1">
+                  <div class="form-group">
+
+                      <label>address:</label>
+                      <input type="text" formControlName="address" placeholder=""
+                             class="form-control"
+                             [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                      <div *ngIf="submitted && f.address.errors">
+                          <div *ngIf="f.address.errors.required"> address is required
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="col-md-5 pr-1">
+                  <div class="form-group">
+
+                      <label>email:</label>
+                      <input type="text" formControlName="email" placeholder=""
+                             class="form-control"
+                             [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                      <div *ngIf="submitted && f.email.errors">
+                          <div *ngIf="f.email.errors.required">email is required</div>
+                      </div>
+                  </div>
+              </div>
+              
+
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+
+                    <label>surname:</label>
+                    <input type="text" formControlName="surname" placeholder=""
+                           class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f.surname.errors }">
+                    <div *ngIf="submitted && f.surname.errors">
+                        <div *ngIf="f.surname.errors.required">surname is required</div>
+                    </div>
+                </div>
+            </div>
+
+              <div class="col-md-5 pr-1">
+                  <div class="form-group">
+
+                      <label>name:</label>
+                      <input type="text" formControlName="name" placeholder=""
+                             class="form-control"
+                             [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                      <div *ngIf="submitted && f.name.errors">
+                          <div *ngIf="f.name.errors.required">exploitationCartNum is required</div>
+                      </div>
+                  </div>
+              </div>
+              
+
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+
+                    <label>postalCode:</label>
+                    <input type="text" formControlName="postalCode" placeholder=""
+                           class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }">
+                    <div *ngIf="submitted && f.postalCode.errors">
+                        <div *ngIf="f.postalCode.errors.required">postalCode is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="drivingLicenceType">drivingLicenceType</label>
+              <input formControlName="drivingLicenceType" type="text" />
+
+          </div>
+          <div class="form-group">
+              <label for="drivingLicenceNum">drivingLicenceNum</label>
+              <input formControlName="drivingLicenceNum" type="text" />
+
+          </div>
+
+
+              <button type="submit" class="btn btn-info">Save</button>
+          </form>
+          <button type="submit" class="btn btn-danger">reset password</button>
+      </div>
+  </div>
+ 
+  <div class="col-md-5">
+    <div class="card card-chart">
+        <div class="card-header">
+            <h3 class="card-category"> Date ciN
+                <br>: {{client?.cinDate}} </h3>
+
+
+        </div>
+
+        <div class="card-footer">
+            <div class="stats">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

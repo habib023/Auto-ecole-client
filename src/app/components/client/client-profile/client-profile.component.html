@@ -1,0 +1,185 @@
+<div class="yari">
+  <header class="title pt-1 pb-2 pl-2 mb-3">
+    <div class="warning-notif">
+      <p *ngIf="currentUser?.state === 'PROFILE_NOT_COMPLETED'"
+         class="profile-not-completed">
+        votre profil n'est pas encore complété, veuillez le compléter svp !!
+      </p>
+      <p *ngIf="currentUser?.state === 'UNVERIFIED'"
+         class="account-not-verified">
+        vous devez vérifier votre compte avec le lien fourni dans l'e-mail de confirmation
+      </p>
+    </div>
+    <img alt="profile img" class="profile-photo ml-3 mt-4" src="../../../../assets/img/john.jpg">
+    <div class="name mt-4">
+      <h2 class="">{{currentUser?.username | titlecase}}</h2>
+      <h5 class="pl-2">{{currentUser?.username | titlecase}}</h5>
+      <p class="pl-2">{{currentUser?.email}}</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="container-fluid">
+      <div class="row mx-2">
+        <div class="general-stat pt-1 pb-1">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="panel mini-box">
+                                <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-info">
+                                    <i class="fas fa-wallet stat-icon"></i>
+                                </span>
+                          <div class="box-info">
+                            <p class="size-h2">0</p>
+                            <p class="text-muted">Session pre-payée</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="panel mini-box">
+                                    <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-danger">
+                                        <i class="fas fa-hand-holding-usd stat-icon"></i>
+                                    </span>
+                          <div class="box-info">
+                            <p class="size-h2">10</p>
+                            <p class="text-muted">Session non payée</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="panel mini-box">
+                                    <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-success">
+                                        <i class="fas fa-check stat-icon"></i>
+                                    </span>
+                          <div class="box-info">
+                            <p class="size-h2">25</p>
+                            <p class="text-muted">Session payée</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="panel mini-box">
+                                    <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-warning">
+                                        <i class="fas fa-equals stat-icon"></i>
+                                    </span>
+                          <div class="box-info">
+                            <p class="size-h2">35</p>
+                            <p class="text-muted">Nombre de session total</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+      <div class="row m-2">
+        <div class="col-xl-8 px-0">
+          <div class="profile-info p-3 pl-5 pb-5">
+            <div class="update-profile">
+              <a (click)="openLg(content)" class="btn btn-update m-0 mr-2">
+                <i class="fas fa-pencil-alt pr-2"></i>Edit profile
+              </a>
+            </div>
+            <h5 class="mb3"><i class="fa fa-user"></i> Profile utilisateur</h5>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">Nom:</label>
+                  <div class="col-xl-7">{{currentUser?.name}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">Prénom:</label>
+                  <div class="col-xl-7">{{currentUser?.surname}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">Nom d'utilisaeur:</label>
+                  <div class="col-xl-7">{{currentUser?.username}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">Email:</label>
+                  <div class="col-xl-7">{{currentUser?.email}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">Address:</label>
+                  <div class="col-xl-7">{{currentUser?.address}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">Code Postal:</label>
+                  <div class="col-xl-7">{{currentUser?.postalCode}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">Date de naissance:</label>
+                  <div class="col-xl-7">{{currentUser?.birthday | date : 'dd MMMM yyyy'}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">numéro Telephone:</label>
+                  <div class="col-xl-7">{{currentUser?.phone}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">CIN:</label>
+                  <div class="col-xl-7">{{currentUser?.cin}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-xl-5">Date de CIN:</label>
+                  <div class="col-xl-7">{{currentUser?.cinDate | date : 'dd MMMM yyyy'}}</div>
+                  <!-- col-sm-10 -->
+                </div>
+              </div>
+              <div class="row col-sm-12 mt-5">
+                <div class="col-sm-4">Télécharger votre CIN</div>
+                <div class="col-sm-4">Télécharger votre Permi</div>
+                <div class="col-sm-4">Télécharger votre Emploie du temp</div>
+              </div>
+            </div>
+
+          </div>
+                </div>
+        <div class="col-xl-4 px-0 pl-2">
+          <div class="notification pt-3">
+            <h5 class="mb-3 ml-2 mt-2"><i class="fa fa-user"></i> Session programmée</h5>
+            <div class="row m-0 p-0">
+              <table [dataSource]="dataSource"
+                     class="mat-elevation-z8" mat-table
+                     multiTemplateDataRows>
+                <ng-container *ngFor="let column of columnsToDisplay" matColumnDef="{{column}}">
+                  <th *matHeaderCellDef mat-header-cell> {{column}} </th>
+                  <td *matCellDef="let element" mat-cell> {{element[column]}} </td>
+                </ng-container>
+
+                <tr *matHeaderRowDef="columnsToDisplay" mat-header-row></tr>
+                <tr *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+                    mat-row>
+                </tr>
+              </table>
+            </div>
+          </div>
+                </div>
+      </div>
+        </div>
+  </main>
+</div>

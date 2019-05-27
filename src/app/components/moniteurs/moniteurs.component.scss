@@ -1,0 +1,94 @@
+@import "../../../assets/scss/base/base";
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.monitor-overview {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+  //border-top: 2px solid $color-primary;
+}
+
+tr.mat-header-row {
+  height: 56px;
+  background-color: #a8aaad0f;
+}
+
+.monitor-overview {
+  border-width: 2px 1px 1px;
+  border-style: solid;
+  border-color: rgb(26, 102, 178) rgb(26, 100, 174) rgb(26, 100, 174);
+  border-image: initial;
+  box-shadow: rgba(0, 0, 0, 0.09) 1px 1px 2px 2px;
+}
+
+.monitor-add-modal .modal-dialog {
+  max-width: 1000px !important;
+}
+
+::ng-deep .monitor-add-modal .modal-dialog {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.add-monitor-btn {
+  background-color: $color-primary;
+  box-shadow: 0 3px 17px 4px rgba(39, 39, 39, 0.1);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: small;
+
+  &:hover {
+    background-color: #fff;
+    color: $color-accent;
+    border: 1px solid $color-accent;
+  }
+}
+
+.mat-elevation-z8 a {
+  background-color: transparent;
+}

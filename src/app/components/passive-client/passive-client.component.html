@@ -1,0 +1,181 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <h5 class="title">La liste des Abonneés </h5>
+                    <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Ajouter un Client
+                    </button>
+
+                </div>
+                <div class="card-body">
+                  <div class="input-group no-border">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442; search for ...">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <i class="now-ui-icons ui-1_zoom-bold"></i>
+                      </div>
+                    </div>
+                  </div>
+                    <table class="table table-dark table-hover table-striped">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>name</th>
+                            <th>Le Preomon</th>
+                            <th>phone</th>
+                          <th>email</th>
+                            <th>statu</th>
+                            <th>Action</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let client of clients  | filter:searchText">
+
+                            <td>{{client.name}}</td>
+                            <td>{{client.surname}}</td>
+                            <td>{{client.phone}}</td>
+                            <td>{{client.email}}</td>
+                            <td>{{client.state}}</td>
+
+                            <td>
+                                <button (click)="deleteclient(client)" class="btn btn-info"> Delete</button>
+
+                                <button  (click)="updateClient(client)"  style="margin-left: 20px;" class="btn btn-danger"> Modifier Client</button>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Ajouter un Noveau Client Rapidment</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">username : </label>
+                <input type="text" formControlName="username" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">First Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="surname">surname</label>
+                <input type="text" formControlName="surname" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.surname.errors }"/>
+                <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+                    <div *ngIf="f.surname.errors.required">surname</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" formControlName="name" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required"> name is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cin">Cin :</label>
+                <input type="text" formControlName="cin" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.cin.errors }"/>
+                <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+                    <div *ngIf="f.cin.errors.required">cin is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cinDate">cinDate :</label>
+                <input type="date" formControlName="cinDate" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.cinDate.errors }"/>
+                <div *ngIf="submitted && f.cinDate.errors" class="invalid-feedback">
+                    <div *ngIf="f.cinDate.errors.required">cin date is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">address</label>
+                <input type="text" formControlName="address" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
+                <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                    <div *ngIf="f.address.errors.required"> is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" formControlName="email" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required"> is required</div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="postalCode">postalCode</label>
+                <input type="text" formControlName="postalCode" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }"/>
+                <div *ngIf="submitted && f.postalCode.errors" class="invalid-feedback">
+                    <div *ngIf="f.postalCode.errors.required"> is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="drivingLicenceType">drivingLicenceType</label>
+                <input type="text" formControlName="drivingLicenceType"/>
+
+            </div>
+            <div class="form-group">
+                <label for="drivingLicenceNum">drivingLicenceNum</label>
+                <input type="text" formControlName="drivingLicenceNum"/>
+
+            </div>
+            <div class="form-group">
+                <label for="phone">phone</label>
+                <input type="text" formControlName="phone" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"/>
+                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.phone.errors.required"> is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-link"> Ajouter</button>
+
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+

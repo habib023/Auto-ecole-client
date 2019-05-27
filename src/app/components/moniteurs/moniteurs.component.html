@@ -1,0 +1,261 @@
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">La liste de vos Moniteur</h2>
+    <p class="category">Please checkout the
+     <!---- <a href="https://scttcper.github.io/ngx-toastr/" target="_blank">full documentation.</a> !---->
+    </p>
+  </div>
+</div>
+<div class="main-content">
+  <div class="row">
+
+    <!-- List of Monitor-->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="places-buttons">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto text-center">
+                <h4 class="card-title">
+                  LA Liste des Moniteurs
+                  <p class="category">vous pouver ajouter aussi les Moniteurs</p>
+                  <!--- <h5>{{currentUser.firstName}}</h5> !---->
+
+                </h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-11 ml-auto mr-auto">
+                <div class="row">
+
+                  <table #monitorTab mat-table
+                         [dataSource]="dataSource" multiTemplateDataRows
+                         class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef>
+                        operation
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <a class="btn"><i class="fas fa-pencil-alt pr-3"
+                                          (click)="updateMoniteur(addMonitor, row.cin)"></i></a>
+                        <a class="btn"><i class="fa fa-close" (click)="deleteMoniteur(row.cin)"></i></a>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToLoop">
+                      <th mat-header-cell *matHeaderCellDef> {{MonitorColumnsNameInFr[column]}} </th>
+                      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                    </ng-container>
+
+
+                    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                    <ng-container matColumnDef="expandedDetail">
+                      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                        <div class="monitor-overview p-3 m-1 mb-3 py-2"
+                             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                          <div class="row w-100">
+                            <div class="col-sm-12"><h5>Vue d'ensemble</h5></div>
+                            <div class="col-sm-6">
+                              <div class="row">
+                                <label class="col-sm-5">Date CIN:</label>
+                                <div class="col-sm-7">{{getMonitorWCin(element.cin).cinDate}}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="row">
+                                <label class="col-sm-5">Date naissance:</label>
+                                <div class="col-sm-7">{{getMonitorWCin(element.cin).birthday}}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="row">
+                                <label class="col-sm-5">Address:</label>
+                                <div class="col-sm-7">{{getMonitorWCin(element.cin).address}}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="row">
+                                <label class="col-sm-5">Code Postal:</label>
+                                <div class="col-sm-7">{{getMonitorWCin(element.cin).postalCode}}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="row">
+                                <label class="col-sm-5">Permi de conduite:</label>
+                                <div class="col-sm-7">{{getMonitorWCin(element.cin).address}}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="row">
+                                <label class="col-sm-5">Certification de conduite:</label>
+                                <div class="col-sm-7">{{getMonitorWCin(element.cin).address}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                        class="example-element-row"
+                        [class.example-expanded-row]="expandedElement === element"
+                        (click)="(expandedElement = expandedElement === element ? null : element)">
+                    </tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                  </table>
+
+                  <button (click)="openAddMonitorModal(addMonitor)" class="btn btn-info add-monitor-btn">Ajouter un
+                    Moniteur
+                  </button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- List of absence-->
+    <div class="col-md-6">
+      <div class="card">
+
+        <div class="card-header">
+        </div>
+
+        <div class="card-body">
+          <div class="places-buttons">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto text-center">
+                <h4 class="card-title">
+                  La liste des absence declarier
+                  <p class="category">vous pouver ajouter au effacer des absence</p>
+                </h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-11 ml-auto mr-auto">
+                <div class="row">
+
+                  <table #absenceTab mat-table
+                         [dataSource]="dataSourceAbsence" multiTemplateDataRows
+                         class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef>
+                        operation
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <a class="btn"><i class="fas fa-sync"
+                                          (click)="$event.stopPropagation(); openResolveAbsenceModal(content , row)"></i></a>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToLoopAbsence">
+                      <th mat-header-cell *matHeaderCellDef> {{AbsenceColumnsNameInFr[column]}} </th>
+                      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                    </ng-container>
+
+                    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                    <ng-container matColumnDef="expandedDetail">
+                      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayAbsence.length">
+                        <div class="monitor-overview px-3 pt-3 m-1 mb-3 py-2"
+                             [@detailExpand]="element == expandedElementAbsence ? 'expanded' : 'collapsed'">
+                          <div class="row w-100">
+                            <label class="col-sm-5">Raison d'absence:</label> maladie
+                          </div>
+                        </div>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnsToDisplayAbsence"></tr>
+                    <tr mat-row *matRowDef="let element; columns: columnsToDisplayAbsence;"
+                        class="example-element-row"
+                        [class.example-expanded-row]="expandedElementAbsence === element"
+                        (click)="(expandedElementAbsence = expandedElementAbsence === element ? null : element)">
+                    </tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">la liste des session</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-dark table-hover table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th>Date (M/J/A)</th>
+        <th>Client</th>
+        <th>Moniteur</th>
+        <th>Voiture</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let session of sessionsTmp ">
+        <td>{{session.reservationDate | date: 'short'}}</td>
+        <td>{{session.client.name }} {{session.client.surname}}</td>
+        <td>
+          <label for="moniteur">le moniteur </label>
+          <select class="custom-select" #sl1 id="moniteur">
+            <option *ngFor="let moniteur of moniteurs">{{moniteur.name}}</option>
+          </select>
+
+          <!-- <select #sl1 [(ngModel)]="monitorSelect" id="monitor" class="custom-select">
+           <option *ngFor="let moniteur of moniteurs" [value]="moniteur">
+             {{moniteur.name}} {{selectDefaultMonitor(moniteur, session, sl1)}}
+           </option>
+          to do !!!!      this linge was commented !!!!  <option *ngIf="!session.monitor" selected="selected"></option>
+           </select> -->
+        </td>
+        <td>
+          <label for="car">Le Voiture</label>
+          <select class="custom-select" #sl2 id="car">
+            <option *ngFor="let car of cars">{{car.model}}</option>
+          </select>
+
+          <!-- <select #sl2 [(ngModel)]="carSelect" id="brydibhnowsers" class="custom-select">
+            <option *ngFor="let car of cars" [value]="car">
+              {{car.num}} {{selectDefaultCar(car, session, sl2)}}
+            </option>
+      to do !!!!      this linge was commented !!!!  <option *ngIf="!session.car" selected="selected">*</option>
+          </select> -->
+        </td>
+        <td>
+          <button (click)="updateSessions(session, sl1.selectedIndex, sl2.selectedIndex)" class="btn btn-danger">fixed
+          </button>
+          <button (click)="cancelSessions(session)" class="btn btn-info"> cancel</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #addMonitor>
+  <app-add-moniteur [monitor]="tmp"></app-add-moniteur>
+</ng-template>

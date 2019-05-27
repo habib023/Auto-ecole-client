@@ -1,0 +1,263 @@
+
+
+ <div class="row">
+
+   <div class="col-md-6">
+  <div class="box">
+    
+            
+    <h2>
+  La liste des agence </h2>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Ajouter une Agence
+  </button>
+  
+  <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button (click)="getAllAgence('ariana')" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Ariana 
+            </button>
+          </h5>
+        </div>
+    
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+              <table class="table table-dark table-hover table-striped">  
+                  <thead class="thead-light">  
+                      <tr> 
+                        <th>Region</th> 
+                        <th>titre</th>  
+                        <th>phone</th> 
+                        <th>Contact</th>
+                      </tr>  
+                    </thead>  
+                    <tbody>  
+                      <tr *ngFor="let agence of agences ">
+                        <td>{{agence.region}}</td>
+                        <td>{{agence.title}}</td>  
+                        <td>{{agence.phone}}</td>
+                        <td>{{agence.email}}</td>
+                      </tr>  
+                    </tbody>  
+                  </table> 
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button  (click)="getAllAgence('tunis')" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              tunis
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+              <table class="table table-dark table-hover table-striped">  
+                  <thead class="thead-light">  
+                      <tr> 
+                        <th>Region</th> 
+                        <th>titre</th>  
+                        <th>phone</th> 
+                        <th>Contact</th>
+                         
+                         
+                      </tr>  
+                    </thead>  
+                    <tbody>  
+                      <tr *ngFor="let agence of agences ">
+                        <td>{{agence.region}}</td>
+                        <td>{{agence.title}}</td>  
+                        <td>{{agence.phone}}</td>
+                        <td>{{agence.email}}</td>
+                         
+                         
+                         
+                        
+                      </tr>  
+                    </tbody>  
+                  </table>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              ben arouse
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+   </div>
+
+</div>
+
+
+ <ng-template #content let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title">Ajouter Une Agence Rapidment</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+
+  
+  <div class="modal-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          
+          
+          <div class="form-group">
+            <label for="region"> Your Region</label>
+            <select class="form-control" formControlName="region" id="exampleFormControlSelect1">
+                <option>ariana</option>
+                <option>tunis</option>
+                <option>Ben Arous</option>
+                <option>Bizerte</option>
+                <option>la Manouba</option>
+                <option>Beja</option>
+                <option>kef</option>
+                <option>Jandouba</option>
+                <option>Gebes</option>
+                <option>Kar</option>
+                <option>Siliana</option>
+                <option>Kasserine</option>
+                <option>Sidi Bouzid</option>
+                <option>Gafsa</option>
+                <option>Tozeur</option>
+                <option>Kébili</option>
+                <option>Tataouine</option>
+                <option>Médenine</option>
+                <option>Sfax</option>
+                <option>Kairouan</option>
+                <option>Mahdia</option>
+                <option>Monastir</option>
+                <option>Sousse</option>
+                <option>Zaghouan</option>
+                <option>Nabeul</option>
+
+                
+                
+              </select>
+            <div *ngIf="submitted && f.region.errors">
+              <div *ngIf="f.region.errors.required"> is required</div>
+              </div>
+            </div>
+        
+        
+        
+        
+        
+        <div class="form-group">
+              <label for="title">title : </label>
+              <input type="text" formControlName="title" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.title.errors }"/>
+              <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                  <div *ngIf="f.title.errors.required">title is required</div>
+              </div>
+          </div>
+
+
+        <div class="col-md-5 pr-1">
+          <div class="form-group">
+            <label>cin:</label>
+            <input type="text" formControlName="cin" placeholder="cin" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
+            <div *ngIf="submitted && f.cin.errors">
+              <div *ngIf="f.cin.errors.required"> est Obligatoire</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-5 pr-1">
+          <div class="form-group">
+            <label>cinDate:</label>
+            <input type="date" formControlName="cinDate" placeholder="cinDate" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.cinDate.errors }">
+            <div *ngIf="submitted && f.cinDate.errors">
+              <div *ngIf="f.cinDate.errors.required"> est Obligatoire</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+              <label for="address">address</label>
+              <input type="text" formControlName="address" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
+              <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                  <div *ngIf="f.address.errors.required"> is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="email">email</label>
+              <input type="email" formControlName="email" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required"> is required</div>
+              </div>
+          </div>
+   
+          <div class="form-group">
+              <label for="phone">phone</label>
+              <input type="text" formControlName="phone" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"/>
+              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                  <div *ngIf="f.phone.errors.required"> is required</div>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="taxRegistrationDate">tax Registration Date</label>
+            <input type="date" formControlName="taxRegistrationDate" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.taxRegistrationDate.errors }"/>
+            <div *ngIf="submitted && f.taxRegistrationDate.errors" class="invalid-feedback">
+                <div *ngIf="f.taxRegistrationDate.errors.required"> is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="taxRegistrationNum">tax Registration Num</label>
+          <input type="text" formControlName="taxRegistrationNum" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.taxRegistrationNum.errors }"/>
+          <div *ngIf="submitted && f.taxRegistrationNum.errors" class="invalid-feedback">
+              <div *ngIf="f.taxRegistrationNum.errors.required"> is required</div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label for="postalCode">postal Code</label>
+        <input type="text" formControlName="postalCode" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }"/>
+        <div *ngIf="submitted && f.postalCode.errors" class="invalid-feedback">
+            <div *ngIf="f.postalCode.errors.required"> is required</div>
+        </div>
+    </div>
+
+      
+
+
+          <div class="form-group">
+              <button class="btn btn-link"> Ajouter</button>
+
+
+          </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+

@@ -1,0 +1,228 @@
+<div class="container">
+  <div class="row mr-0">
+    <div class="card p-5 m-3">
+
+      <h2 class="text-center">Ajouter Moniteur</h2>
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>Nom:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control"
+                     formControlName="name" placeholder="name"
+                     type="text">
+              <div class="error-list">
+                <p *ngIf="f.get('name').touched && f.get('name').errors">(*)Le nom doit avoir un longueur minimum de 4
+                  caractère</p>
+                <div class="w-100"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>Prénom:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" class="form-control"
+                     formControlName="surname" placeholder="surname"
+                     type="text">
+              <div class="error-list">
+                <p *ngIf="f.get('surname').touched && f.get('surname').errors">(*)Le prénom doit avoir un longueur
+                  minimum de 4 caractère</p>
+                <div class="w-100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>Address:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.address.errors }" class="form-control"
+                     formControlName="address" placeholder=""
+                     type="text">
+              <div class="error-list">
+                <p *ngIf="f.get('address').touched && f.get('address').errors">(*)L' address doit avoir un longueur
+                  minimum de 5 caractère</p>
+                <div class="w-100"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>Code postal:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }" class="form-control"
+                     formControlName="postalCode" placeholder="postalCode"
+                     type="text">
+              <div class="error-list">
+                <p *ngIf="f.get('postalCode').touched && f.get('postalCode').errors">(*)Le code postal est invalid</p>
+                <div class="w-100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>Date de naissance:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }" class="form-control"
+                     formControlName="birthday" placeholder=""
+                     type="date">
+              <div class="error-list">
+                <p *ngIf="f.get('birthday').touched && f.get('birthday').errors">(*)La date de naissance est
+                  obligatoire</p>
+                <div class="w-100"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+
+            <div class="form-group">
+              <label>Tel:</label>
+              <input type="text" formControlName="phone" placeholder="phone" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+              <div class="error-list">
+                <p *ngIf="f.get('phone').touched && f.get('phone').errors">(*)Le numéro de telephone est invalid</p>
+                <div class="w-100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>CIN:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" class="form-control" formControlName="cin"
+                     placeholder="cin"
+                     type="text">
+              <div class="error-list">
+                <p *ngIf="f.get('cin').touched && f.get('cin').errors">(*)Le CIN est invalid</p>
+                <div class="w-100"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>Date de CIN:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.cinDate.errors }" class="form-control"
+                     formControlName="cinDate" placeholder="cinDate"
+                     type="date">
+              <div class="error-list">
+                <p *ngIf="f.get('cinDate').touched && f.get('cinDate').errors">(*)La date de CIN est obligatoire</p>
+                <div class="w-100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DrivingLicence add-->
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>Type de permis de conduire:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.drivingLicenceType.errors }" class="form-control"
+                     formControlName="drivingLicenceType" placeholder=""
+                     type="text">
+              <div class="error-list">
+                <!--<p *ngIf="f.get('surname').touched && f.get('surname').errors">(*)Le prénom doit avoir un longueur minimum de 4 caractère</p> <div class="w-100"></div>-->
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3">
+            <div class="form-group">
+              <label>Numéro de permis de conduire:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.drivingLicenceNum.errors }" class="form-control"
+                     formControlName="drivingLicenceNum" placeholder=""
+                     type="text">
+              <div class="error-list">
+                <!--<p *ngIf="f.get('surname').touched && f.get('surname').errors">(*)Le prénom doit avoir un longueur minimum de 4 caractère</p> <div class="w-100"></div>-->
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3">
+            <div class="form-group">
+              <label>Date de permis de conduire:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.drivingLicenceDate.errors }" class="form-control"
+                     formControlName="drivingLicenceDate" placeholder=""
+                     type="date">
+              <div class="error-list">
+                <!--<p *ngIf="f.get('surname').touched && f.get('surname').errors">(*)Le prénom doit avoir un longueur minimum de 4 caractère</p> <div class="w-100"></div>-->
+              </div>
+            </div>
+          </div>
+          <div (click)="submitLicence()" class="col-xl-2 btn p-0 m-0 pt-2">
+            <label>Ajouter un Permi</label>
+            <i class="fa fa-plus"></i>
+          </div>
+        </div>
+        <div *ngIf="drivingLicence.length !== 0" class="col-xl-12 m-2 p-2 license-list">
+          <div *ngFor="let license of drivingLicence; let i = index" class="row">
+            <div class="m-l-2"><label class="mr-1">#{{i + 1}}</label></div>
+            <div class="col-xl-4"><label class="mr-1">Date de
+              permit: </label>{{license.drivingLicenceDate | date: 'short'}}</div>
+            <div class="col-xl-3"><label class="mr-1">Type de permit: </label>{{license.drivingLicenceType}}</div>
+            <div class="col-xl-"><label class="mr-1"> Numéro de permit: </label>{{license.drivingLicenceNum}}</div>
+            <div (click)="deleteDrivingLicence(license)" class="btn m-0 p-0"><i class="fa fa-close mt-1"></i></div>
+          </div>
+        </div>
+
+        <!-- Certification add-->
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="form-group">
+              <label>Type de certification de conduire:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.certificationType.errors }" class="form-control"
+                     formControlName="certificationType" placeholder=""
+                     type="text">
+              <div class="error-list">
+                <!--<p *ngIf="f.get('surname').touched && f.get('surname').errors">(*)Le prénom doit avoir un longueur minimum de 4 caractère</p> <div class="w-100"></div>-->
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3">
+            <div class="form-group">
+              <label>certificationNum:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.certificationNum.errors }" class="form-control"
+                     formControlName="certificationNum"
+                     placeholder="certificationNum" type="text">
+              <div class="error-list">
+                <!--<p *ngIf="f.get('surname').touched && f.get('surname').errors">(*)Le prénom doit avoir un longueur minimum de 4 caractère</p> <div class="w-100"></div>-->
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3">
+            <div class="form-group">
+              <label>Date de certification de conduire:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.certificationDate.errors }" class="form-control"
+                     formControlName="certificationDate" placeholder=""
+                     type="date">
+              <div class="error-list">
+                <!--<p *ngIf="f.get('surname').touched && f.get('surname').errors">(*)Le prénom doit avoir un longueur minimum de 4 caractère</p> <div class="w-100"></div>-->
+              </div>
+            </div>
+          </div>
+          <div (click)="submitCertif()" class="col-xl-2 btn p-0 m-0 pt-2">
+            <label>Ajouter un Certif</label>
+            <i class="fa fa-plus"></i>
+          </div>
+        </div>
+        <div *ngIf="certification.length !== 0" class="col-xl-12 m-2 p-2 license-list">
+          <div *ngFor="let certif of certification; let i = index" class="row">
+            <div class="m-l-2"><label class="mr-1">#{{i + 1}}</label></div>
+            <div class="col-xl-4"><label class="mr-1">Date de
+              certification: </label>{{certif.certificationDate | date: 'short'}}</div>
+            <div class="col-xl-3"><label class="mr-1">Type de certification: </label>{{certif.certificationType}}</div>
+            <div class="col-xl-4"><label class="mr-1"> Numéro de certification: </label>{{certif.certificationNum}}
+            </div>
+            <div (click)="deleteCertif(certif)" class="btn m-0 p-0"><i class="fa fa-close mt-1"></i></div>
+          </div>
+        </div>
+        <div class="col-xl-2">
+          <button class="btn submit-form" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

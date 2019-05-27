@@ -1,0 +1,88 @@
+<div class="panel-header panel-header-lg">
+    
+</div>
+  <div class="main-content">
+      <div class="row">
+          <div class="col-md-6 sm-6">
+              <div class="card">
+                  <div class="card-header">
+                    
+                        <div class="text-info">
+                      <h5 class="title"> Statistiques pour vos Voiture en fonction des session des conduit</h5>
+                        </div>
+                    </div>
+                  <div class="card-body">
+                      <div class="_ngcontent-c11">
+                          <div style="display: block;">
+                              <canvas baseChart
+                                      [data]="pieChartData"
+                                      [labels]="pieChartLabels"
+                                      [chartType]="pieChartType"
+                                      [options]="pieChartOptions"
+                                      [plugins]="pieChartPlugins"
+                                      [colors]="pieChartColors"
+                                      [legend]="pieChartLegend">
+                              </canvas>
+                            </div>
+                            
+                      </div>
+                  </div>
+                               
+              </div>
+          </div>
+  
+          <div class="col-md-6 sm-6">
+              <div class="card">
+                  <div class="card-header">
+                        <div class="text-info">
+                      
+                            <h5 class="title"> statisque Vos moniteur en fonction des session des conduit</h5>
+                  </div>
+                        </div>
+                  <div class="card-body">
+                      <div style="display: block;">
+                          <canvas baseChart 
+                            [data]="doughnutChartData"
+                            [labels]="doughnutChartLabels"
+                            [colors]="DagColors"
+                            [chartType]="doughnutChartType">
+                          </canvas>
+                        </div>
+                        <div>
+                            
+                          </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="text-info">
+                    <h5 class="title"> Statistiques lier pour vos exament</h5>
+                </div>
+              </div>
+                <div class="card-body">
+                    <div class="_ngcontent-c10">
+                      <div style="display: block;">
+                        <canvas baseChart
+                          [data]="polarAreaChartData"
+                          [labels]="polarAreaChartLabels"
+                          [legend]="polarAreaLegend"
+                          [colors]="DagColors"
+                          [chartType]="polarAreaChartType">
+                        </canvas>
+                      </div>
+                    </div>
+                </div>
+                             
+            </div>
+        </div>
+
+            </div>
+    
+  </div>
+  
+  
+

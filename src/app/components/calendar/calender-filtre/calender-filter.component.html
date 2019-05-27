@@ -1,0 +1,82 @@
+
+<div class="container">
+  <div class="row">
+      <button type="button" class="btn-filter open-filter" data-toggle="collapse" data-target="#filter-panel">
+        <span class="glyphicon glyphicon-cog"></span> Advanced Search
+      </button>
+    <div id="filter-panel" class="collapse filter-panel">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form class="form-check" role="form">
+            <div class="form-group">
+              <label class="filter-col" style="margin-right:0;">
+                Clients:
+              </label>
+                <ng-multiselect-dropdown
+                        [ngModelOptions]="{standalone: true}"
+                        [placeholder]="'Filter Client'"
+                        [data]="clients.map(mapClient) "
+                        [(ngModel)]="selectedClients"
+                        [settings]="dropdownSettings"
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        (onDeSelect)="onDeSelect($event)"
+                        (onDeSelectAll)="onDeSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+            </div><!-- form group [Client] -->
+            <div class="form-group">
+              <label class="filter-col" style="margin-right:0;">
+                Monitors:
+              </label>
+                <ng-multiselect-dropdown
+                        [ngModelOptions]="{standalone: true}"
+                        [placeholder]="'Filter Moniteur'"
+                        [data]="monitors.map(mapMonitor) "
+                        [(ngModel)]="selectedMonitors"
+                        [settings]="dropdownSettings"
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        (onDeSelect)="onDeSelect($event)"
+                        (onDeSelectAll)="onDeSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+            </div> <!-- form group [Monitor] -->
+            <div class="form-group">
+              <label class="filter-col" style="margin-right:0;">
+                Cars:
+              </label>
+              <ng-multiselect-dropdown
+                      [ngModelOptions]="{standalone: true}"
+                      [placeholder]="'Filter Voiture'"
+                      [data]="cars.map(mapCar) "
+                      [(ngModel)]="selectedCars"
+                      [settings]="dropdownSettings"
+                      (onSelect)="onItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)"
+                      (onDeSelect)="onDeSelect($event)"
+                      (onDeSelectAll)="onDeSelectAll($event)"
+              >
+              </ng-multiselect-dropdown>
+            </div><!-- form group [order by] -->
+            <div class="form-group">
+              <label class="filter-col" style="margin-right:0;">Type du sessions</label>
+                <ng-multiselect-dropdown
+                        [ngModelOptions]="{standalone: true}"
+                        [placeholder]="'Filter Types'"
+                        [data]="typeSession"
+                        [(ngModel)]="selectedType"
+                        [settings]="dropdownSettings"
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        (onDeSelect)="onDeSelect($event)"
+                        (onDeSelectAll)="onDeSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+            </div><!-- form group [order by] -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

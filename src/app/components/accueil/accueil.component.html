@@ -1,0 +1,46 @@
+<!-- <div class="col-md-12"> -->
+
+<div class="col-sm-16">
+
+  <div class="card ">
+
+    <div class="card-body ">
+      <div class="image">
+        <div class="map" id="map">
+          <ul>
+            <li><a href="">Accueille</a></li>
+            <li><a href="">All Informations</a></li>
+            <li><a href="maps">Contact Us</a></li>
+            <li style="float:right"><a class="active" href="#about">Your accaount</a></li>
+          </ul>
+          <div class="box">
+            <h1>
+              La liste des agence </h1>
+            <table class="table table-dark table-hover table-striped">
+              <thead class="thead-light">
+              <tr>
+                <th>titre</th>
+                <th>phone</th>
+                <th>adresse</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let agence of agences ">
+                <td>{{agence.title}}</td>
+                <td>{{agence.phone}}</td>
+                <td>{{agence.address}}</td>
+                <td>
+                  <button (click)="getinto(agence)" class="btn btn-succes" style="margin-left: 20px;">Register</button>
+                </td>
+                <td>
+                  <button (click)="login()" class="btn btn-info" class="btn" style="margin-left: 20px;">Login</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

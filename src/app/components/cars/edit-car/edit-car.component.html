@@ -1,0 +1,122 @@
+<div _ngcontent-c5="" class="panel-header panel-header-sm">
+    <div _ngcontent-c8="" class="panel-header"><div _ngcontent-c8="" class="header text-center"><h2 _ngcontent-c8="" class="title">Modifier votre voiture</h2><p _ngcontent-c8="" class="category">Please checkout the <a _ngcontent-c8=""  target="_blank">Modifier votre voiture </a></p></div></div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card">
+
+            <h2 class="text-center">Modifier Votre Voiture </h2>
+            <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label>model:</label>
+                        <input type="text" formControlName="model" placeholder="model" class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.model.errors }">
+                        <div *ngIf="submitted && f.model.errors">
+                            <div *ngIf="f.model.errors.required">model is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label>Matricule :</label>
+                        <input type="text" formControlName="num" placeholder="" class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.num.errors }">
+                        <div *ngIf="submitted && f.num.errors">
+                            <div *ngIf="f.num.errors.required">Matricule is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+
+                        <label>la marque de la voiture:</label>
+                        <input type="text" formControlName="mark" placeholder="mark" class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.mark.errors }">
+                        <div *ngIf="submitted && f.mark.errors">
+                            <div *ngIf="f.mark.errors.required">eta is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+
+                        <label>serialNum:</label>
+                        <input type="text" formControlName="serialNum" placeholder="serialNum" class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.serialNum.errors }">
+                        <div *ngIf="submitted && f.serialNum.errors">
+                            <div *ngIf="f.serialNum.errors.required">serialNum is required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+
+                        <label>date FirstRegistration:</label>
+                        <input type="date" formControlName="dateFirstRegistration" placeholder="dateFirstRegistration"
+                               class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.dateFirstRegistration.errors }">
+                        <div *ngIf="submitted && f.dateFirstRegistration.errors">
+                            <div *ngIf="f.dateFirstRegistration.errors.required"> dateFirstRegistration is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+
+                        <label>exploitationCartDate:</label>
+                        <input type="date" formControlName="exploitationCartDate" placeholder="exploitationCartDate"
+                               class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.exploitationCartDate.errors }">
+                        <div *ngIf="submitted && f.exploitationCartDate.errors">
+                            <div *ngIf="f.exploitationCartDate.errors.required">exploitationCartDate is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+
+                        <label>exploitationCartNum:</label>
+                        <input type="text" formControlName="exploitationCartNum" placeholder="exploitationCartNum"
+                               class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.exploitationCartNum.errors }">
+                        <div *ngIf="submitted && f.exploitationCartNum.errors">
+                            <div *ngIf="f.exploitationCartNum.errors.required">exploitationCartNum is required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-info">Save</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card card-chart">
+            <div class="card-header">
+                <h3 class="card-category"> Date de premier mise en circulation
+                    <br>: {{car.dateFirstRegistration}} </h3>
+
+
+            </div>
+
+            <div class="card-footer">
+                <div class="stats">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

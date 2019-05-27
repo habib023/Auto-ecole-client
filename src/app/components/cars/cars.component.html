@@ -1,0 +1,176 @@
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">La liste de vos voiture</h2>
+    <p class="category">Please checkout the
+    </p>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="row">
+
+    <!-- List of Car-->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="places-buttons">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto text-center">
+                <h4 class="card-title">
+                  La Liste des Voiture d'agence
+                </h4>
+                <p class="category">vous pouver gère la flotte de voitures</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-11 ml-auto mr-auto">
+                <div class="row">
+
+                  <table #carTab mat-table
+                         [dataSource]="carDataSource" multiTemplateDataRows
+                         class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef>
+                        operation
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <a class="btn"><i class="fas fa-pencil-alt pr-3"
+                                          (click)="$event.stopPropagation() ; openCarUpdateModal(addCar, row.num)"></i></a>
+                        <a class="btn"><i class="fa fa-close"
+                                          (click)="$event.stopPropagation() ;  deleteCar(row.num)"></i></a>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="{{column}}" *ngFor="let column of carColumns">
+                      <th mat-header-cell *matHeaderCellDef> {{CarColumnsNameInFr[column]}} </th>
+                      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                    </ng-container>
+
+
+                    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                    <ng-container matColumnDef="expandedDetail">
+                      <td mat-cell *matCellDef="let element" [attr.colspan]="allCarTableColumns.length">
+                        <div class="car-overview p-3 m-1 mb-3 py-2"
+                             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                          <div class="row w-100">
+                            <div class="col-sm-12"><h5>Vue d'ensemble</h5></div>
+                            <div class="col-sm-12">
+                              <div class="row">
+                                <label class="col-sm-5">Numéro de série:</label>
+                                <div class="col-sm-7">{{getCarWithNum(element.num).serialNum}}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12">
+                              <div class="row">
+                                <label class="col-sm-5">Numéro de carte d'exploitation:</label>
+                                <div class="col-sm-7">{{getCarWithNum(element.num).exploitationCartNum }}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12">
+                              <div class="row">
+                                <label class="col-sm-5">Date de carte d'exploitation:</label>
+                                <div
+                                    class="col-sm-7">{{getCarWithNum(element.num).exploitationCartDate | date: 'short' }}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="allCarTableColumns"></tr>
+                    <tr mat-row *matRowDef="let element; columns: allCarTableColumns;"
+                        class="example-element-row"
+                        [class.example-expanded-row]="expandedElement === element"
+                        (click)="(expandedElement = expandedElement === element ? null : element)">
+                    </tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                  </table>
+
+                  <button (click)="openAddCarModal(addCar)" class="btn btn-info add-car-btn">Ajouter Voiture</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- List of breakdown-->
+    <div class="col-md-6">
+      <div class="card">
+
+        <div class="card-header">
+        </div>
+
+        <div class="card-body">
+          <div class="places-buttons">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto text-center">
+                <h4 class="card-title">
+                  La liste des panne de voiture declarier
+                </h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-11 ml-auto mr-auto">
+                <div class="row">
+
+                  <table #breakdownTab mat-table
+                         [dataSource]="dataSourceBreakdown" multiTemplateDataRows
+                         class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef>
+                        operation
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <a><i class="fas fa-sync"
+                              (click)="$event.stopPropagation(); openResolveBreakdownModal(addBreakdown , row)"></i></a>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="{{column}}" *ngFor="let column of BreakdownColumns">
+                      <th mat-header-cell *matHeaderCellDef> {{BreakdownColumnsNameInFr[column]}} </th>
+                      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                    </ng-container>
+
+                    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                    <ng-container matColumnDef="expandedDetail">
+                      <td mat-cell *matCellDef="let element" [attr.colspan]="allBreakdownTableColumns.length">
+                        <div class="car-overview px-3 pt-3 m-1 mb-3 py-2"
+                             [@detailExpand]="element == expandedElementBreakdown ? 'expanded' : 'collapsed'">
+                          <div class="row w-100">
+                            <label class="col-sm-5">Raison de panne:</label>{{element.raisonbreakdown}}
+                          </div>
+                        </div>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="allBreakdownTableColumns"></tr>
+                    <tr mat-row *matRowDef="let element; columns: allBreakdownTableColumns;"
+                        class="example-element-row"
+                        [class.example-expanded-row]="expandedElementBreakdown === element"
+                        (click)="(expandedElementBreakdown = expandedElementBreakdown === element ? null : element)">
+                    </tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<ng-template #addCar>
+  <app-add-car (submit)="closeCarModal($event)" [car]="tmp"></app-add-car>
+</ng-template>

@@ -1,0 +1,137 @@
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">La Liste Des panne</h2>
+    <p class="category">vous pouver annoncer les pannes ici</p>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="row">
+
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="input-group no-border">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                   placeholder="&#61442; search for ...">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <i class="now-ui-icons ui-1_zoom-bold"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="places-buttons">
+            <div class="row">
+
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-lg-11 ml-auto mr-auto">
+
+                <div class="row">
+
+                  <table class="table table-dark table-hover table-striped">
+
+                    <thead class="thead-light">
+                    <tr>
+
+                      <th>La voiture</th>
+                      <th>Annoncer Par</th>
+                      <th>La panne</th>
+                      <th>is critical</th>
+                      <th>state</th>
+
+                      <th>Acition</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let Breakdown of Breakdowns  | filter:searchText">
+
+                      <td>{{Breakdown.car.model}}</td>
+                      <td>{{Breakdown.monitor.name}} {{Breakdown.monitor.surname}} </td>
+                      <td>{{Breakdown.raisonbreakdown}}</td>
+                      <td>{{Breakdown.iscritical}}</td>
+                      <td>{{Breakdown.state}}</td>
+
+
+                      <td>
+
+
+                        <button (click)="fixed(Breakdown)" class="btn btn-info">fixed</button>
+                        <button class="btn btn-danger" (click)="openLg(content ,Breakdown)"
+                                *ngIf="Breakdown.state==='announced'">solution
+                        </button>
+
+
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">la liste des session</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-dark table-hover table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th>Date (M/J/A)</th>
+        <th>Client</th>
+        <th>Moniteur</th>
+        <th>Voiture</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let session of sessionsTmp ">
+        <td>{{session.reservationDate | date: 'short'}}</td>
+        <td>{{session.client.name }} {{session.client.surname}}</td>
+        <td>
+          <label for="moniteur">le moniteur </label>
+          <select class="custom-select" #sl1 id="moniteur">
+            <option *ngFor="let moniteur of moniteurs">{{moniteur.name}}</option>
+          </select>
+
+
+        </td>
+        <td>
+          <label for="car">Le Voiture</label>
+          <select class="custom-select" #sl2 id="car">
+            <option *ngFor="let car of cars">{{car.model}}</option>
+          </select>
+        </td>
+        <td>
+          <button (click)="updateSessions(session, sl1.selectedIndex, sl2.selectedIndex)" class="btn btn-danger">fixed
+          </button>
+          <button (click)="canceleSessions(session)" class="btn btn-info"> cancel</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

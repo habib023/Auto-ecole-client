@@ -1,0 +1,75 @@
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">Calendrier des sessions </h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="container">
+        <calender-filter *ngIf="payload.role !== 'client'" (checked)="filterSessions($event)"></calender-filter>
+        <app-calendar [events-list]="sessionsEvent"></app-calendar>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Session -->
+<ng-template #modalContent let-close="close">
+  <ng-container *ngIf="{
+       session: modalData.session$ | async,
+       monitors: modalData.monitors$ | async,
+       cars: modalData.cars$ | async
+       } as modalDataSync">
+    <div class="modal-header">
+      <h5 class="modal-title">Event action occurred</h5>
+      <button type="button" class="close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <table>
+        <thead class="thead-light">
+        <tr>
+          <th>date</th>
+          <th>name</th>
+          <th>moniteur</th>
+          <th>les voiture</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <!-- The ? tell angular tha the value is not safe because it's observable-->
+          <td>{{modalDataSync.session?.reservationDate | date: 'short'}}</td>
+          <td>{{modalDataSync.session?.client.name}}
+            {{modalDataSync.session?.client.surname}}</td>
+          <td>
+            <select #monitorsList id="jomuoa">
+              <option *ngFor="let moniteur of modalDataSync.monitors" [value]="moniteur">{{moniteur.name}}</option>
+            </select>
+          </td>
+          <td>
+            <select #carsList id="bryibhnowsers">
+              <option *ngFor="let car of modalDataSync.cars" [value]="car">{{car.model}}</option>
+            </select>
+          </td>
+          <td>
+            <button class="btn btn-danger"
+                    (click)="updateSessions(
+                       modalDataSync?.session,
+                       modalDataSync.monitors[monitorsList.selectedIndex],
+                       modalDataSync.cars[carsList.selectedIndex]); close()"> validate
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="close()">
+        OK
+      </button>
+    </div>
+  </ng-container>
+</ng-template>

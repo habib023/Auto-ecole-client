@@ -1,0 +1,25 @@
+<div class="wrapper" style="background-color: #ebecf1;">
+  <div >
+    <div>
+      <ul>
+        <li><a [routerLink]="['./client-profile']" routerLinkActive="active">
+          Profile
+          <!--<span class="menu-active"><i class="fa fa-caret-up"></i></span>-->
+        </a></li>
+        <li><a [routerLink]="['./home-client']" routerLinkActive="active">
+          Accueil
+          <!--<span class="menu-active"><i class="fa fa-caret-up"></i></span>-->
+        </a></li>
+        <li><a [routerLink]="['./client-calendar']" routerLinkActive="active">
+          Calendrier
+          <!--<span class="menu-active"><i class="fa fa-caret-up"></i></span>-->
+        </a></li>
+        <li style="float:right"><a [routerLink]="['/login']" class="">
+          <i class="fa fa-power-off pr-1"></i>Déconnexion
+        </a></li>
+      </ul>
+    </div>
+    <router-outlet></router-outlet>
+    <!--<app-footer></app-footer>-->
+  </div>
+</div>

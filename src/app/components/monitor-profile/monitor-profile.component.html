@@ -1,0 +1,194 @@
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title"> Profile</h5>
+          <button (click)="openLg(content)" class="btn btn-outline-primary mb-2 mr-2">Update Your Profile
+          </button>
+        </div>
+        <div *ngIf="currentUser" class="card-body">
+          <h2> Bonjour {{currentUser.username}}   </h2>
+          <ul class="list-group">
+            <li class="list-group-item active"><b>{{currentUser.name}}{{currentUser.surname}} </b></li>
+            <li class="list-group-item"> Address: {{currentUser.address}}</li>
+            <li class="list-group-item"> Code Postal: {{currentUser.postalCode}}</li>
+            <li class="list-group-item"> Tel: {{currentUser.phone}}</li>
+            <li class="list-group-item"> Cin: {{currentUser.cin}}</li>
+            <li class="list-group-item"> Type de Permi: {{currentUser.drivingLicenceType}}</li>
+            <li class="list-group-item"> Num de Permi: {{currentUser.drivingLicenceNum}}</li>
+          </ul>
+        </div>
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="form-group col-sm-2" >
+
+                    <label for="file" style="color: rgb(51, 3, 2);"   >Choose  CIN</label>
+                    <input (change)="handleFileInput($event.target.files)" formControlName="sampleFile"
+                        id="file" name="sampleFile" type="file">
+                </div>
+                
+                <div class="form-group col-sm-4 ">
+                    <label for="file2" style="color: rgb(145, 37, 30);" >Choose  drivingLicence </label>
+                    <input (change)="handleFileInput($event.target.files)" formControlName="sampleFile"
+                        id="file2" name="sampleFile" type="file">
+                </div>
+            </div>
+            <div>
+                <button (click)="uploadFileToActivity()" class="btn btn-success btn-xs" type="button">Uplode
+                    CIN!!
+                </button>
+                <button (click)="uploadFile2ToActivity()" class="btn btn-success btn-xs" type="button">Uplode
+                    drivingLicence !!
+                </button>
+                <button (click)="getTimetablePDF()" class="btn btn-outline-primary mb-2 mr-2">emploi du temps
+                    des session
+                </button>
+                <a *ngIf="fileUrl" [href]="fileUrl" class="btn btn-danger">Open PDF</a>
+            </div>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title"> Modifier Password</h5>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+            <div class="col-md-8 pr-1">
+              <div class="form-group">
+                <label>olde password:</label>
+                <input [ngClass]="{ 'is-invalid': submitted && f.oldPassword.errors }"
+                       class="form-control" formControlName="oldPassword" placeholder="" type="text">
+                <div *ngIf="submitted && f.oldPassword.errors">
+                  <div *ngIf="f.oldPassword.errors.required">
+                    <p>oldPassword est Obligatoire </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 pr-1">
+              <div class="form-group">
+                <label>New Password:</label>
+                <input [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }"
+                       class="form-control" formControlName="newPassword" placeholder="" type="text">
+                <div *ngIf="submitted && f.newPassword.errors">
+                  <div *ngIf="f.newPassword.errors.required">
+                    <p>new Password est Obligatoire </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-info" type="submit">
+              Update password
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">modifier Votre Profile Rapidment</h4>
+      <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="modifprofile()" [formGroup]="editFormprofile">
+
+
+        <div class="form-group">
+          <label for="username">username : </label>
+          <input [ngClass]="{ 'is-invalid': submitted && p.username.errors }" class="form-control"
+                 formControlName="username"
+                 type="text"/>
+          <div *ngIf="submitted && p.username.errors" class="invalid-feedback">
+            <div *ngIf="p.username.errors.required">First Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="surname">surname</label>
+          <input [ngClass]="{ 'is-invalid': submitted && p.surname.errors }" class="form-control"
+                 formControlName="surname"
+                 type="text"/>
+          <div *ngIf="submitted && p.surname.errors" class="invalid-feedback">
+            <div *ngIf="p.surname.errors.required">surname</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name">name</label>
+          <input [ngClass]="{ 'is-invalid': submitted && p.name.errors }" class="form-control"
+                 formControlName="name"
+                 type="text"/>
+          <div *ngIf="submitted && p.name.errors" class="invalid-feedback">
+            <div *ngIf="p.name.errors.required"> name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cin">Cin :</label>
+          <input [ngClass]="{ 'is-invalid': submitted && p.cin.errors }" class="form-control"
+                 formControlName="cin"
+                 type="text"/>
+          <div *ngIf="submitted && p.cin.errors" class="invalid-feedback">
+            <div *ngIf="p.cin.errors.required">cin is required</div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="address">address</label>
+          <input [ngClass]="{ 'is-invalid': submitted && p.address.errors }" class="form-control"
+                 formControlName="address"
+                 type="text"/>
+          <div *ngIf="submitted && p.address.errors" class="invalid-feedback">
+            <div *ngIf="p.address.errors.required"> is required</div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="postalCode">postalCode</label>
+          <input [ngClass]="{ 'is-invalid': submitted && p.postalCode.errors }" class="form-control"
+                 formControlName="postalCode"
+                 type="text"/>
+          <div *ngIf="submitted && p.postalCode.errors" class="invalid-feedback">
+            <div *ngIf="p.postalCode.errors.required"> is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="drivingLicenceType">drivingLicenceType</label>
+          <input formControlName="drivingLicenceType" type="text"/>
+
+        </div>
+
+        <div class="form-group">
+          <label for="phone">phone</label>
+          <input [ngClass]="{ 'is-invalid': submitted && p.phone.errors }" class="form-control"
+                 formControlName="phone"
+                 type="text"/>
+          <div *ngIf="submitted && p.phone.errors" class="invalid-feedback">
+            <div *ngIf="p.phone.errors.required"> is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-link">
+            Modifier
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="modal.close('Close click')" class="btn btn-light"
+              type="button">
+        Close
+      </button>
+    </div>
+  </ng-template>
+</div>

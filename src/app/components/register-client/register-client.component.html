@@ -1,0 +1,279 @@
+﻿<div class="yari mb-5">
+  <header>
+    <div class="title">
+      <div class="container">
+        <h2>Formulaire d'inscription</h2>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container wrapper pt-5 mt-5 pb-5 mb-5">
+      <form [formGroup]="registrationForm">
+
+        <div class="row error-list ml-2">
+          <p *ngIf="f.get('username').touched && f.get('username').errors">(*)Le nom d'utilisateur doit avoir un
+            longueur minimum de 4 caractère</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('name').touched && f.get('name').errors">(*)Le nom doit avoir un longueur minimum de 4
+            caractère</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('surname').touched && f.get('surname').errors">(*)Le prénom doit avoir un longueur minimum de
+            4 caractère</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('email').touched && f.get('email').errors">(*)L'address électronique est invalid</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('address').touched && f.get('address').errors">(*)L' address doit avoir un longueur minimum de
+            5 caractère</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('cin').touched && f.get('cin').errors">(*)Le CIN est invalid</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('cinDate').touched && f.get('cinDate').errors">(*)La date de CIN est obligatoire</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('birthday').touched && f.get('birthday').errors">(*)La date de naissance est obligatoire</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('postalCode').touched && f.get('postalCode').errors">(*)Le code postal est invalid</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('phone').touched && f.get('phone').errors">(*)Le numéro de telephone est invalid</p>
+          <div class="w-100"></div>
+          <p *ngIf="f.get('password').touched && f.get('password').errors">(*)Le mot de pass doit avoir un longueur
+            minimum de 8 caractère</p>
+          <div class="w-100"></div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-xl-4">
+            <div class="input-group input-group-icon mt-4">
+              <input [ngClass]="{ 'is-invalid': f.get('username').touched && f.get('username').errors }"
+                     formControlName="username"
+                     placeholder="Nom d'utilisateur"
+                     type="text"/>
+              <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+          </div>
+
+          <div class="w-100"></div>
+
+          <div class="col-xl-4">
+            <div class="input-group input-group-icon">
+              <input [ngClass]="{ 'is-invalid': f.get('name').touched && f.get('name').errors }" formControlName="name"
+                     placeholder="Nom"
+                     type="text"/>
+              <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="input-group input-group-icon">
+              <input [ngClass]="{ 'is-invalid': f.get('surname').touched && f.get('surname').errors }"
+                     formControlName="surname"
+                     placeholder="Prénom"
+                     type="text"/>
+              <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+          </div>
+
+          <div class="w-100"></div>
+
+          <div class="col-xl-4">
+            <div class="input-group input-group-icon">
+              <input [ngClass]="{ 'is-invalid': f.get('email').touched && f.get('email').errors }"
+                     formControlName="email"
+                     placeholder="Adress électronique"
+                     type="email"/>
+              <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+          </div>
+
+          <div class="col-xl-4">
+            <div class="input-group input-group-icon">
+              <input [ngClass]="{ 'is-invalid': f.get('password').touched && f.get('password').errors }"
+                     formControlName="password"
+                     placeholder="Password"
+                     type="password"/>
+              <div class="input-icon"><i class="fa fa-key"></i></div>
+            </div>
+          </div>
+          <div class="w-100"></div>
+
+          <div class="col-xl-4">
+            <div class="input-group input-group-icon">
+              <input [ngClass]="{ 'is-invalid': f.get('address').touched && f.get('address').errors }"
+                     formControlName="address"
+                     placeholder="Address"
+                     type="text"/>
+              <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+          </div>
+
+          <div class="col-xl-4">
+            <div class="input-group input-group-icon ">
+              <input [ngClass]="{ 'is-invalid': f.get('postalCode').touched && f.get('postalCode').errors }"
+                     formControlName="postalCode"
+                     placeholder="Code postal"
+                     type="text"/>
+              <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="input-group input-group-icon">
+              <input [ngClass]="{ 'is-invalid': f.get('phone').touched && f.get('phone').errors }"
+                     formControlName="phone"
+                     placeholder="Numéro mobile"
+                     type="text"/>
+              <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xl-6">
+            <h4>Date de naissance</h4>
+            <div class="input-group">
+              <input [ngClass]="{ 'is-invalid': f.get('birthday').touched && f.get('birthday').errors }"
+                     formControlName="birthday"
+                     placeholder="Date"
+                     type="date"/>
+            </div>
+          </div>
+          <div class="w-100"></div>
+          <div class="col-xl-6">
+            <h4>Sexe</h4>
+            <div class="input-group">
+              <input id="gender-male" name="gender" type="radio" value="male"/>
+              <label for="gender-male">Mâle</label>
+              <input id="gender-female" name="gender" type="radio" value="female"/>
+              <label for="gender-female">Femelle</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="input-group input-group-icon">
+              <input [ngClass]="{ 'is-invalid': f.get('cin').touched && f.get('cin').errors }" formControlName="cin"
+                     placeholder="Carte CIN"
+                     type="text"/>
+              <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+          </div>
+          <div class="w-100"></div>
+          <div class="col-xl-6">
+            <div class="input-group">
+              <input [ngClass]="{ 'is-invalid': f.get('cinDate').touched && f.get('cinDate').errors }"
+                     formControlName="cinDate" placeholder="Date CIN"
+                     type="date">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-xl-6">
+            <h4>Avez-vous un permis de conduire</h4>
+            <div class="input-group">
+              <input (click)="showSection()" id="yes"
+                     name="drivingLicenseQ" type="radio"
+                     value="yes"/>
+              <label for="yes"><span>
+                Oui
+              </span></label>
+              <input (click)="hideSection()" [checked]="true"
+                     id="no" name="drivingLicenseQ"
+                     type="radio"
+                     value="no"/>
+              <label for="no"> <span>
+                Non
+              </span></label>
+            </div>
+          </div>
+
+
+          <div *ngIf="doYouHaveADrivingLicense" class="row" formGroupName="drivingLicense">
+            <div class="col-xl-4">
+              <div class="input-group input-group-icon">
+                <input (focus)="dLNumInvalid = false"
+                       [ngClass]="{ 'is-invalid': dL.get('drivingLicenceNum').errors || dLNumInvalid }"
+                       formControlName="drivingLicenceNum"
+                       placeholder="Numéro Permi"
+                       type="text"/>
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="input-group input-group-icon">
+                <input (focus)="dLTypeInvalid = false"
+                       [ngClass]="{ 'is-invalid': dL.get('drivingLicenceType').errors || dLTypeInvalid}"
+                       formControlName="drivingLicenceType"
+                       placeholder="Type Permi"
+                       type="text"/>
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-xl-4">
+              <div class="input-group">
+                <input (focus)="dLDateInvalid = false"
+                       [ngClass]="{ 'is-invalid': dL.get('drivingLicenceDate').errors || dLDateInvalid}"
+                       formControlName="drivingLicenceDate"
+                       placeholder="Date"
+                       type="date">
+              </div>
+            </div>
+            <div (click)="addDrivingLicense()" class="add-license">
+          <span class="align-content-center">
+            <i class="fas fa-plus-circle"></i> Ajouter un Permi
+          </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xl-12">
+          <div *ngFor="let license of drivingLicense; let i = index" class="row">
+            <div class="m-l-2">#{{i + 1}}</div>
+            <div class="col-xl-3">Date de permit: {{license.drivingLicenceDate | date: 'short'}}</div>
+            <div class="col-xl-2">Type dde permit: {{license.drivingLicenceType}}</div>
+            <div class="col-xl-3">Numero de permit: {{license.drivingLicenceNum}}</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>Valider votre information</h4>
+          <div class="w-100"></div>
+          <div class="col-xl-6">
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="input-group">
+                  <button (click)="onSubmit()"
+                          [disabled]="registrationForm.invalid"
+                          [ngClass]="{ 'disabled': registrationForm.invalid}"
+                          class="sub"
+                          type="button">Ok
+                  </button>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="input-group">
+                  <button class="" type="reset">Annuler</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="note pl-3 pb-1">
+          <p>N.B: Tous les champ sont obligatoire</p>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+
+</div>

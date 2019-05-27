@@ -1,0 +1,152 @@
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">Liste des réservations demandées</h2>
+    <p class="category">valider ou rejeter les demande svp</p>
+  </div>
+</div><div class="main-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Planing </h5>
+          <p class="category"></p>
+          <div class="input-group no-border">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                   placeholder="&#61442; search for ...">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <i class="now-ui-icons ui-1_zoom-bold"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="container">
+            <table class="table table-dark table-hover table-striped">
+              <thead class="thead-light">
+                <tr>
+                  <th>Date (M/J/A)</th>
+                  <th>Client</th>
+                  <th>Moniteur</th>
+                  <th>Voiture</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let session of sessions  | filter:searchText  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                <td>{{session.reservationDate | date: 'short'}}</td>
+                      <td>{{session.client.name }} {{session.client.surname}}</td>
+                      <td>
+                        <select #sl1 [(ngModel)]="monitorSelect" id="monitor" class="custom-select">
+                          <option *ngFor="let moniteur of moniteurs" [value]="moniteur">
+                            {{moniteur.name}} {{selectDefaultMonitor(moniteur, session, sl1)}}
+                          </option>
+                          <!--<option *ngIf="!session.monitor" selected="selected"></option>-->
+                          </select>
+                      </td>
+                      <td>
+                        <select #sl2 [(ngModel)]="carSelect" id="brydibhnowsers" class="custom-select">
+                          <option *ngFor="let car of cars" [value]="car">
+                            {{car.num}} {{selectDefaultCar(car, session, sl2)}}
+                          </option>
+                          <!--<option *ngIf="!session.car" selected="selected">*</option>-->
+                        </select>
+                      </td>
+                      <td>
+                        <button (click)="updateSessions(session, sl1.selectedIndex, sl2.selectedIndex)"   class="btn btn-danger"> validate</button>
+                          <button (click)="canceleSessions(session)" class="btn btn-info"> cancel</button>
+                      </td>
+                </tr>
+              </tbody>
+            </table>
+          <div>
+            <ngb-pagination
+                  [(page)]="page"
+                  [pageSize]="pageSize"
+                  [collectionSize]="length">
+            </ngb-pagination>
+          </div>
+          <button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">resevrer des
+            session a vos Abonneés
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">reserver des session a vos Client</h4>
+    <button type="button" class="close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="addForm"
+          (ngSubmit)="onSubmit(reservationDate , sl3.selectedIndex,
+         sl2.selectedIndex , sl1.selectedIndex )">
+
+      <div class="form-group">
+        <label>date de reservation :</label>
+
+        <input type="datetime-local" formControlName=
+            "reservationDate">
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="client">le client </label>
+        <select #sl3 id="cliehjhgjhgjkh">
+
+          <option *ngFor="let users of users">{{users.name}} {{users.surname}} </option>
+        </select>
+        <div *ngIf="submitted && f.client.errors" class="invalid-feedback">
+          <div *ngIf="f.client.errors.required">client!!</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="car">la voiture</label>
+
+        <select #sl2 id="bryibhnowsers">
+          <option *ngFor="let car of cars">{{car.model}}</option>
+        </select>
+
+        <div *ngIf="submitted && f.car.errors" class="invalid-feedback">
+          <div *ngIf="f.car.errors.required">voiture!!</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="moniteur">Moniteur</label>
+        <select #sl1 id="pipipo">
+          <option *ngFor="let moniteur of moniteurs">{{moniteur.name}}</option>
+        </select>
+
+        <div *ngIf="submitted && f.moniteur.errors" class="invalid-feedback">
+          <div *ngIf="f.moniteur.errors.required">moniteur!!</div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-link"> reserver</button>
+
+
+      </div>
+
+    </form>
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+

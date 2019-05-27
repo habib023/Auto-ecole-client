@@ -1,0 +1,16 @@
+<div class="wrapper" style="background-color: #ebecf1;">
+  <div>
+    <div>
+      <ul>
+        <li><a [routerLink]="['./home-monitor']">Home</a></li>
+        <li><a [routerLink]="['./monitor-profile']">Your Profile</a></li>
+        <li><a [routerLink]="['./monitor-calendar']">Calender</a></li>
+        <li><a [routerLink]="['./absence-monitor']">Absence</a></li>
+        <li><a [routerLink]="['./panne-car']">Panne</a></li>
+        <li style="float:right"><a [routerLink]="['/login']" class="active">Logout</a></li>
+      </ul>
+    </div>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">La Liste de votre Absences</h2>
+    <p class="category">vous pouver Annoncer votre Absences ici</p>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+
+        <div class="card-header">
+          <button class="btn btn-outline-primary mb-2 mr-2"
+                  (click)="openLg(content)">Declarer une absence
+          </button>
+        </div>
+
+        <div class="card-body">
+          <table class="table table-dark table-hover table-striped">
+            <thead class="thead-light">
+            <tr>
+              <th>Date debut</th>
+              <th>Date fin</th>
+              <th>Raison</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let absence of absence">
+              <td>{{absence.debDate | date : 'fullDate' }}</td>
+              <td>{{absence.endDate | date : 'fullDate' }}</td>
+              <td>{{absence.raison}}</td>
+              <td>
+                <button (click)="deleteAbsence(absence)" class="btn btn-info"> Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Dclarer Votre Absence Rapidment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+      <div class=" custom-control">
+        <label for="debDate">Date debut: </label>
+        <input id="debDate" class="custom-select" type="datetime-local" formControlName=
+            "debDate">
+      </div>
+
+      <div class="custom-control">
+        <label for="endDate">Date fin: </label>
+        <input id="endDate" class="custom-select"
+               type="datetime-local"
+               formControlName="endDate">
+      </div>
+
+      <div class="custom-control">
+        <label for="raison">Raison : </label>
+        <input id="raison" type="text" formControlName="raison"
+               class="custom-select custom-control"
+               [ngClass]="{ 'is-invalid': submitted && f.raison.errors }"
+        />
+        <div *ngIf="submitted && f.raison.errors" class="invalid-feedback">
+          <p *ngIf="f.raison.errors.required">debu Date d absence !!</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button (click)="modal.close('Close click')" [disabled]="loading" class="btn btn-link"> Ajouter</button>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

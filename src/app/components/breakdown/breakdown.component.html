@@ -1,0 +1,111 @@
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">La Liste Des panne</h2>
+    <p class="category">vous pouver annoncer les pannes ici</p>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="row">
+
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="places-buttons">
+            <div class="row">
+
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-lg-11 ml-auto mr-auto">
+                <button class="btn btn-info" (click)="openLg(content)">Add panne</button>
+                <div class="row">
+
+                  <table class="table table-dark table-hover table-striped">
+                    <thead class="thead-light">
+                    <tr>
+                      <th>La voiture</th>
+                      <th>Annoncer Par</th>
+                      <th>La panne</th>
+                      <th>est critique</th>
+
+                      <th>Acition</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let Breakdown of Breakdowns">
+
+                      <td>{{Breakdown.car.model}}</td>
+                      <td>{{Breakdown.monitor.name}} {{Breakdown.monitor.surname}} </td>
+                      <td>{{Breakdown.raisonbreakdown}}</td>
+                      <td>{{Breakdown.iscritical}}</td>
+
+
+                      <td>
+                        <button (click)="breakdowniscritical(Breakdown)" class="btn btn-danger"> is critical</button>
+                        <button (click)="deletebreakdown(Breakdown)" class="btn btn-info"> Delate</button>
+
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Ajouter un Noveau Client Rapidment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addForm"
+          (ngSubmit)="onSubmit(raisonbreakdown , sl2.selectedIndex)">
+      <div class="form-group">
+        <label for="raisonbreakdown">raison de la Panne </label>
+        <input type="text" formControlName="raisonbreakdown" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.raisonbreakdown.errors }"/>
+        <div *ngIf="submitted && f.raisonbreakdown.errors" class="invalid-feedback">
+          <div *ngIf="f.raisonbreakdown.errors.required">raison de la Panne</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="car">la voiture</label>
+
+        <select #sl2 id="bryibhnowsers">
+          <option *ngFor="let car of cars">{{car.model}}</option>
+        </select>
+
+        <div *ngIf="submitted && f.car.errors" class="invalid-feedback">
+          <div *ngIf="f.car.errors.required">voiture!!</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-link"> Ajouter</button>
+
+
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

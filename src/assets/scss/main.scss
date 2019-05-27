@@ -1,0 +1,60 @@
+//@import "../../../node_modules/bootstrap/scss/bootstrap";  ;
+@import "../../../node_modules/angular-calendar/scss/angular-calendar";
+@import "../../../node_modules/font-awesome/css/font-awesome.css";
+@import url(base/_base.scss);
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+html {
+  background-color: #f3f3f3;
+}
+
+* {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #eee;
+}
+.multiselect-dropdown .dropdown-btn {
+  display: inline-block;
+  border: 1px solid #fa7a50  !important;
+  width: 100% ;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-weight: 400;
+  line-height: 1.52857143;
+  text-align: left;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border-radius: 4px;
+}
+
+.dropdown-btn{
+  width: max-content !important;
+}
+
+.dropdown-list {
+  width: 70% !important;
+}
+
+.multiselect-item-checkbox input[type=checkbox] + div:before {
+  box-sizing: content-box;
+  content: '';
+  color: #fa7a50 !important;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: -9px;
+  border: 2px solid #fa7a50 !important;
+  text-align: center;
+  transition: all .4s ease;
+}
+
+.dropdown-down {
+  margin-top: 5px;
+  margin-left: 5px;
+}

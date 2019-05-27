@@ -1,0 +1,58 @@
+<div _ngcontent-c5="" class="panel-header panel-header-sm">
+  <div _ngcontent-c8="" class="panel-header">
+    <div _ngcontent-c8="" class="header text-center"><h2 _ngcontent-c8="" class="title">Modifier votre voiture</h2>
+      <p _ngcontent-c8="" class="category">Please checkout the <a _ngcontent-c8="" target="_blank">Modifier votre
+        voiture </a></p></div>
+  </div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card">
+
+      <h2 class="text-center">Resulta d exament </h2>
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit(buttonType)">
+
+        <div class="col-md-5 pr-1">
+          <div class="form-group">
+            <label> le nom de l'Examinateur:</label>
+            <input type="text" formControlName="examinateur" placeholder="examinateur" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.examinateur.errors }">
+            <div *ngIf="submitted && f.examinateur.errors">
+              <div *ngIf="f.examinateur.errors.required">model is required</div>
+            </div>
+          </div>
+        </div>
+
+
+        <button type="submit" (click)="onSubmit('Previous')" class="btn btn-danger">failde</button>
+        <button type="button" (click)="onSubmit('Next')" class="btn btn-info">sucsses</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h3 class="card-category"> Date d exam:
+          <br>: {{exam.examDate}} </h3>
+
+        <h3 class="card-category"> Num Dosseir:
+          <br>: {{exam.numexam}} </h3>
+
+        <h3 class="card-category"> Client:
+          <br>: {{exam.client.name}} </h3>
+
+        <h3 class="card-category"> Moniteur:
+          <br>: {{exam.monitor.name}} </h3>
+      </div>
+
+      <div class="card-footer">
+        <div class="stats">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

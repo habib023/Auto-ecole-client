@@ -1,0 +1,50 @@
+
+.row {
+  display: grid;
+}
+.form-group .form-control, .input-group .form-control {
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: auto;
+
+}
+
+.form-group {
+  display: block;
+}
+
+.open-filter {
+  float: left;
+}
+.btn-filter {
+  background-color: transparent;
+  color: #a1a199;
+  border: none;
+  outline:none;
+  margin-top: 2%;
+  //color: rgba(65,255 ,100,.5);
+}
+
+.filter-panel {
+  width: 67%;
+  padding: 10px;
+  clear: both;
+}
+
+label {
+  padding-right: 10px;
+}
+
+.panel {
+   margin-bottom: 0;
+   background-color: #fff;
+  //border: 1px solid transparent;
+   border-radius: 4px;
+   //-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+   //box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.panel-default {
+  border-color: #ddd;
+}
+

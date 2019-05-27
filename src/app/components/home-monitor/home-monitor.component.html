@@ -1,0 +1,104 @@
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="places-buttons">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto text-center">
+                <h4 class="card-title">
+                  Vos Session de traveil
+                  <p class="category">vous pouver reserver des session </p>
+                </h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-11 ml-auto mr-auto">
+                <div class="row">
+                  <table class="table table-dark table-hover table-striped">
+                    <thead class="thead-light">
+                    <tr>
+                      <th>Date(M/J/A)</th>
+                      <th>Client</th>
+                      <th>Voiture</th>
+                      <th>Statue</th>
+                      <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let session of sessions ">
+                      <td>{{session.reservationDate | date : 'short' }}</td>
+                      <td>{{session?.client.name}}{{session?.client.surname}}</td>
+                      <td>{{session.car.num}}</td>
+                      <td>{{session.state}}</td>
+                      <td>
+                        <button class="btn btn-info"> Delete</button>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <button (click)="openLg(content)" class="btn btn-outline-primary mb-2 mr-2">
+                    Planifier une session
+                  </button>
+                  <button (click)="getHistoryPDF()"
+                          class="btn btn-outline-primary mb-2 mr-2">Historique de travail
+                  </button>
+                  <a *ngIf="fileUrl" [href]="fileUrl" class="btn btn-danger">Open PDF</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <ng-template #content let-modal>
+
+    <div class="modal-header">
+      <h4 class="modal-title">Ajouter une session Rapidment</h4>
+      <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit(reservationDate , sl3.selectedIndex, sl2.selectedIndex )" [formGroup]="addForm">
+
+        <div class="form-group">
+          <label>date de reservation :</label>
+          <input class="custom-select" formControlName=
+              "reservationDate" type="date">
+        </div>
+
+        <div class="form-group">
+          <label for="client">le client </label>
+          <select class="custom-select" #sl3 id="client">
+            <option *ngFor="let users of users">{{users.name}} {{users.surname}} </option>
+          </select>
+          <div *ngIf="submitted && f.client.errors" class="invalid-feedback">
+            <div *ngIf="f.client.errors.required">client!!</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="car">la voiture</label>
+          <select class="custom-select" #sl2 id="car">
+            <option *ngFor="let car of cars">{{car.model}}</option>
+          </select>
+          <div *ngIf="submitted && f.car.errors" class="invalid-feedback">
+            <div *ngIf="f.car.errors.required">voiture!!</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-link"> reserver</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button (click)="modal.close('Close click')" class="btn btn-light" type="button">Close</button>
+    </div>
+  </ng-template>

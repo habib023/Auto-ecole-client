@@ -1,0 +1,20 @@
+@import "../../../../assets/scss/base/base";
+
+input {
+  padding: 1em;
+}
+
+
+.add-car-btn {
+  background-color: $color-primary;
+  box-shadow: 0 3px 17px 4px rgba(39, 39, 39, 0.1);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: small;
+
+  &:hover {
+    background-color: #fff;
+    color: $color-accent;
+    border: 1px solid $color-accent;
+  }
+}

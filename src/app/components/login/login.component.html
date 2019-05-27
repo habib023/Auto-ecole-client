@@ -1,0 +1,58 @@
+﻿<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100 p-t-120 p-b-30">
+      <form (ngSubmit)="onSubmit()" [formGroup]=" loginForm" class="login100-form validate-form">
+        <div class="login100-form-avatar">
+          <!--<img alt="AVATAR">-->
+        </div>
+
+        <span class="login100-form-title p-t-20 p-b-25">
+          Veuillez s'il vous plaît entrer votre nom d'utilisateur et votre mot de passe
+				</span>
+
+        <div class="wrap-input100 validate-input m-b-10" data-validate="Nom d'utilisateur est nécessaire">
+          <input class="input100"
+                 formControlName="username"
+                 name="username"
+                 placeholder="Nom d'utilisateur"
+                 type="text">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-10" data-validate="Mot de passe is required">
+          <input class="input100"
+                 formControlName="password"
+                 name="pass"
+                 placeholder="Mot de passe"
+                 type="password">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+							<i class="fa fa-lock"></i>
+						</span>
+        </div>
+
+        <div class="container-login100-form-btn p-t-10">
+          <button class="login100-form-btn">
+            S'identifier
+          </button>
+        </div>
+
+        <div class="text-center w-full p-t-25 p-b-50">
+          <a [routerLink]="['/forgot-password']" class="txt1">
+            Mot de passe oublié?
+          </a>
+        </div>
+
+        <div class="text-center w-full p-b-50">
+          <a [routerLink]="['/accueil']" class="txt1">
+            Créer un nouveau compte
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

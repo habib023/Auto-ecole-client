@@ -1,0 +1,159 @@
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">La liste de Absence</h2>
+    <p class="category">Please checkout
+      <!---- <a href="https://scttcper.github.io/ngx-toastr/" target="_blank">full documentation.</a> !---->
+    </p>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+
+        <div class="card-header">
+
+        </div>
+
+        <div class="card-body">
+          <table class="table table-dark table-hover table-striped">
+            <thead class="thead-light">
+            <tr>
+              <th>moniteur</th>
+              <th>Date debut</th>
+              <th>Date fin</th>
+              <th>Raison</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let absence of absence">
+              <td>{{absence.monitor.name }} {{absence.monitor.surname }} </td>
+              <td>{{absence.debDate | date : 'fullDate' }}</td>
+              <td>{{absence.endDate | date : 'fullDate' }}</td>
+              <td>{{absence.raison}}</td>
+              <td>
+                <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content , absence)">solution
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="main-content">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+
+                  <div class="card-header">
+
+                  </div>
+
+                  <div class="card-body">
+                    <div class="input-group no-border">
+                      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                             placeholder="&#61442; search for ...">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <i class="now-ui-icons ui-1_zoom-bold"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <table class="table table-dark table-hover table-striped">
+                      <thead class="thead-light">
+                      <tr>
+                        <th>moniteur</th>
+                        <th>Date debut</th>
+                        <th>Date fin</th>
+                        <th>Raison</th>
+                        <th>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let absence of absence   | filter:searchText">
+                        <td>{{absence.monitor.name }} {{absence.monitor.surname }} </td>
+                        <td>{{absence.debDate | date : 'fullDate' }}</td>
+                        <td>{{absence.endDate | date : 'fullDate' }}</td>
+                        <td>{{absence.raison}}</td>
+                        <td>
+                          <button class="btn btn-outline-primary mb-2 mr-2"
+                                  (click)="openLg(content , absence)">solution
+                          </button>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">la liste des session</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-dark table-hover table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th>Date (M/J/A)</th>
+        <th>Client</th>
+        <th>Moniteur</th>
+        <th>Voiture</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let session of sessionsTmp ">
+        <td>{{session.reservationDate | date: 'short'}}</td>
+        <td>{{session.client.name }} {{session.client.surname}}</td>
+        <td>
+          <label for="moniteur">le moniteur </label>
+          <select class="custom-select" #sl1 id="moniteur">
+            <option *ngFor="let moniteur of moniteurs">{{moniteur.name}}</option>
+          </select>
+
+          <!-- <select #sl1 [(ngModel)]="monitorSelect" id="monitor" class="custom-select">
+           <option *ngFor="let moniteur of moniteurs" [value]="moniteur">
+             {{moniteur.name}} {{selectDefaultMonitor(moniteur, session, sl1)}}
+           </option>
+          to do !!!!      this linge was commented !!!!  <option *ngIf="!session.monitor" selected="selected"></option>
+           </select> -->
+        </td>
+        <td>
+          <label for="car">Le Voiture</label>
+          <select class="custom-select" #sl2 id="car">
+            <option *ngFor="let car of cars">{{car.model}}</option>
+          </select>
+
+          <!-- <select #sl2 [(ngModel)]="carSelect" id="brydibhnowsers" class="custom-select">
+            <option *ngFor="let car of cars" [value]="car">
+              {{car.num}} {{selectDefaultCar(car, session, sl2)}}
+            </option>
+      to do !!!!      this linge was commented !!!!  <option *ngIf="!session.car" selected="selected">*</option>
+          </select> -->
+        </td>
+        <td>
+          <button (click)="updateSessions(session, sl1.selectedIndex, sl2.selectedIndex)" class="btn btn-danger">fixed
+          </button>
+          <button (click)="canceleSessions(session)" class="btn btn-info"> cancel</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

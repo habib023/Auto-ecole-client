@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="row mr-0">
+    <div class="card">
+      <h2 class="text-center mt-3">Ajouter Voiture</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="addForm" class="mx-3">
+
+        <div class="row">
+          <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Modèle:</label>
+                  <input [ngClass]="{ 'is-invalid': submitted && f.model.errors }" class="form-control"
+                         formControlName="model" placeholder="model"
+                         type="text">
+                  <div *ngIf="submitted && f.model.errors">
+                    <div *ngIf="f.model.errors.required">model is required</div>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Matricule :</label>
+                  <input [ngClass]="{ 'is-invalid': submitted && f.num.errors }" class="form-control"
+                         formControlName="num" placeholder=""
+                         type="text">
+                  <div *ngIf="submitted && f.num.errors">
+                    <div *ngIf="f.num.errors.required">Matricule is required</div>
+                  </div>
+                </div>
+          </div>
+            </div>
+
+        <div class="row">
+          <div class="col-md-5 pr-1">
+                <div class="form-group">
+
+                  <label>Marque:</label>
+                  <input [ngClass]="{ 'is-invalid': submitted && f.mark.errors }" class="form-control"
+                         formControlName="mark" placeholder="mark"
+                         type="text">
+                  <div *ngIf="submitted && f.mark.errors">
+                    <div *ngIf="f.mark.errors.required">marque is required</div>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-5 pr-1">
+                <div class="form-group">
+
+                  <label>Numéro de sachet:</label>
+                  <input [ngClass]="{ 'is-invalid': submitted && f.serialNum.errors }" class="form-control"
+                         formControlName="serialNum" placeholder="serialNum"
+                         type="text">
+                  <div *ngIf="submitted && f.serialNum.errors">
+                    <div *ngIf="f.serialNum.errors.required">serialNum is required</div>
+                  </div>
+                </div>
+          </div>
+            </div>
+
+        <div class="row">
+          <div class="col-md-5 pr-1">
+                <div class="form-group">
+
+                  <label>Date de première mise en circulation</label>
+                  <input [ngClass]="{ 'is-invalid': submitted && f.dateFirstRegistration.errors }" class="form-control"
+                         formControlName="dateFirstRegistration"
+                         placeholder="dateFirstRegistration"
+                         type="date">
+                  <div *ngIf="submitted && f.dateFirstRegistration.errors">
+                    <div *ngIf="f.dateFirstRegistration.errors.required"> dateFirstRegistration is required</div>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-5 pr-1">
+                <div class="form-group">
+
+                  <label>Date de carte d'exploitation:</label>
+                  <input [ngClass]="{ 'is-invalid': submitted && f.exploitationCartDate.errors }" class="form-control"
+                         formControlName="exploitationCartDate"
+                         placeholder="exploitationCartDate"
+                         type="date">
+                  <div *ngIf="submitted && f.exploitationCartDate.errors">
+                    <div *ngIf="f.exploitationCartDate.errors.required">exploitationCartDate is required</div>
+                  </div>
+                </div>
+          </div>
+            </div>
+
+
+        <div class="row">
+          <div class="col-md-5 pr-1">
+            <div class="form-group">
+
+              <label>Num de carte d'exploitation:</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.exploitationCartNum.errors }" class="form-control"
+                     formControlName="exploitationCartNum"
+                     placeholder="exploitationCartNum" type="text">
+              <div *ngIf="submitted && f.exploitationCartNum.errors">
+                <div *ngIf="f.exploitationCartNum.errors.required">exploitationCartNum is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-info add-car-btn" type="submit">Ajouter Voiture</button>
+        </form>
+    </div>
+  </div>
+</div>

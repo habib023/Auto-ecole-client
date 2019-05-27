@@ -1,0 +1,17 @@
+<div class="col-md-8">
+  <div class="card">
+    <h2 class="text-center">choisiser votre heure</h2>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+     <div class="col-md-5 pr-1">
+      <div class="form-group">
+        <label>date de reservation :</label>
+        <input type="datetime-local" formControlName="reservationDate" placeholder="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.reservationDate.errors }">
+        <div *ngIf="submitted && f.reservationDate.errors">
+          <div *ngIf="f.reservationDate.required">la date est obligatoire</div>
+        </div>
+      </div>
+     </div>
+      <button type="submit"  class="btn btn-info">Save</button>
+    </form>
+  </div>
+  </div>
